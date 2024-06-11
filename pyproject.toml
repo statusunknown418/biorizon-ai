@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "biorizon-ai"
+version = "0.1.0"
+description = ""
+authors = ["alvaro <alvarodevcode@outlook.com>"]
+readme = "README.md"
+packages = [{include = "biorizon_ai"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^1.33.0"
+numpy = "^1.26.4"
+Flask = "^3.0.3"
+python-dotenv = "^1.0.1"
+Flask-DotEnv = "^0.1.2"
+Werkzeug = "3.0.0"
+tensorflow = "^2.16.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
