@@ -34,7 +34,7 @@ COPY poetry.lock pyproject.toml ./
 RUN poetry check
 
 # Install Dependencies
-RUN poetry install --no-interaction --no-cache --without dev
+RUN poetry install
 
 # Copy Application
 COPY . /app
