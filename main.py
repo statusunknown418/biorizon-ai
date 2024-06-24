@@ -7,18 +7,11 @@ import base64
 import tensorflow as tf
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.preprocessing import image as keras_image
-from PIL import Image
 
 load_dotenv()
 
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-  return render_template('index.html')
-
-
-client = openai.OpenAI(api_key=env.API_KEY)
+key = os.getenv('API_KEY')
+client = openai.OpenAI(api_key=key)
 
 base_model = VGG16(weights='imagenet', include_top=False)
 
@@ -89,16 +82,21 @@ def gpt4_analysis(similarity, threshold=0.8):
     
     return response.choices[0].message.content.strip(), total_tokens
 
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return render_template('index.html')
+
 @app.route('/predict')
 def predict():
-  key = os.getenv('API_KEY')
   if key is None:
     return Exception('API key not found')
   
   image = request.args.get('image')
 
   if image is None:
-    return Exception('Image not found')
+    return "Error"
   
   base_image = encode_image_to_base64(image)
   user_image = encode_image_to_base64(request.files['user_image'])
