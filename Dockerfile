@@ -42,4 +42,4 @@ COPY . .
 
 # Run Application
 EXPOSE 5000
-CMD ["poetry", "run", "gunicorn", "--bind", "0.0.0.0:5000", "main:app"]
+CMD ["poetry", "run", "flask", "run", "--host=0.0.0.0", "--port=5000"]
